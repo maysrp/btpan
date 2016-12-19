@@ -1,0 +1,42 @@
+<div class="row" style="margin-top:100px">
+	<h2 class="text-center"><a href="/">BT转换</a></h2>
+</div>
+<div class="row" >
+	<span class="row">
+		<h3>{$info['name']}</h3>
+	</span>
+	<hr>
+	<div class="row">
+		<div class="col-md-6">
+			<span class="row">
+				创建者:{$info['createby']}
+			</span>
+			<span class="row">
+				描述:{$info['comment']}
+			</span>
+			<span class="row">
+				大小:{$info['size']|thesize}
+			</span>
+			<span class="row">
+				做种时间:{$info['time']}
+			</span>
+			<span class="row">
+				文件个数:{$info['filecount']}
+			</span>
+			<span class="row">
+				<span class="glyphicon glyphicon-magnet"></span>:
+				{$info['magnet']}
+			</span>
+			<span class="row">
+				<a href="{$info['torrent']|tr}" class="btn btn-primary btn-sm">下载种子</a>
+			</span>
+		</div>
+		<div class="col-md-6" style="background-color: #F1F1F1;overflow-y:scroll;height: 300px;border-radius: 5px;border:2px solid">
+			<volist name="file" id="vo">
+				<span><span class="{$vo['type']}"></span> {$vo['filename']}</span><span class="text-muted"> {$vo['size']|thesize}</span><br>
+
+			</volist>
+		</div>	
+	</div>
+	
+</div>
