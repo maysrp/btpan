@@ -8,7 +8,7 @@
 				$add['name']=$info['info']['name'];
 				$add['size']=$info['info']['size'];
 				$add['filecount']=$info['info']['filecount'];
-				$add['encoding']=$info['encoding'];
+				$add['encoding']=$info['encoding']?$info['encoding']:"utf-8";
 				$add['file']=json_encode($info['info']['files']);
 				$add['torrent']=$torrent;
 				$add['time']=date("Y-m-d H:i",$info['creation date']);
