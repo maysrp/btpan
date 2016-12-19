@@ -13,7 +13,7 @@
 				$add['torrent']=$torrent;
 				$add['time']=date("Y-m-d H:i",$info['creation date']);
 				$add['createby']=$info['created by'];
-				$add['comment']=$info['comment'];
+				$add['comment']=$info['comment']?$info['comment']:$info['info']['name'];
 				$tid=$this->add($add);
 				D('File')->file($info['info']['files'],$tid,$add['hash']);
 				return $tid;

@@ -8,7 +8,7 @@
 					$add['filename']=$value['path'][1];
 					$add['type']=$this->type($add['filename']);
 				}else{
-					$add['filename']=array_pop($value['path'])?array_pop($value['path']):$value['path'];
+					$add['filename']=$value['path']['0'];
 					$add['type']=$this->type($add['filename']);
 				}
 				$add['size']=$value['length'];
