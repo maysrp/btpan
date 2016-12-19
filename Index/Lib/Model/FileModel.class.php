@@ -4,11 +4,16 @@
 			$add['hash']=$hash;
 			$add['tid']=$tid;
 			foreach ($info as $key => $value) {
-				if(count($value['path'])==2){
-					$add['filename']=$value['path'][1];
-					$add['type']=$this->type($add['filename']);
+				if(is_array($value['path'])){
+					if(count($value['path'])==2){
+						$add['filename']=$value['path'][1];
+						$add['type']=$this->type($add['filename']);
+					}else{
+						$add['filename']=$value['path']['0'];
+						$add['type']=$this->type($add['filename']);
+					}
 				}else{
-					$add['filename']=$value['path']['0'];
+					$add['filename']=$value['path'];
 					$add['type']=$this->type($add['filename']);
 				}
 				$add['size']=$value['length'];
