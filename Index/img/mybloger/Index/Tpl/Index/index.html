@@ -1,0 +1,52 @@
+<style type="text/css">
+	img{
+		max-width: 350px;
+		max-height: 350px;
+	}
+</style>
+<div class="row">
+	<div class="col-md-9">
+		<div class="row" style="background-color:#FFFFFF;border-radius:5px;padding:10px;margin-top:20px;">
+				<a href="/index.php/Index">Home</a>
+		</div>
+		<volist name="list" id="post">
+			<div class="row" style="background-color:#FFFFFF;border-radius:10px;padding:10px;margin-top:20px;">
+				<p><h4><b ><a href="/index.php/Index/post/pid/{$post['pid']}" class="text-muted">{$post['title']}</a></b> <small data-toggle="modal" data-target="#post_{$post['pid']}"><span class="glyphicon glyphicon-new-window"></span></small></h4></p>
+				<p><small>作者 {$post['uid']|uidname} 发布于 {$post['time']|date="Y-m-d H:i",###} / <span class="glyphicon glyphicon-eye-open"></span> {$post['view']} / <span class="glyphicon glyphicon-comment"></span> {$post['re']} / 标签 {$post['tid']|tags}</small></p>
+				{$post['image']|postimage}
+				
+				<div id="post_{$post['pid']}" class="modal fade" >
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title"><b ><a href="/index.php/Index/post/pid/{$post['pid']}" class="text-muted">{$post['title']}</a></b></h4>
+								<small>作者 {$post['uid']|uidname} 发布于 {$post['time']|date="Y-m-d H:i",###} / <span class="glyphicon glyphicon-eye-open"></span> {$post['view']} / <span class="glyphicon glyphicon-comment"></span> {$post['re']} / 标签 {$post['tid']|tags}</small>
+							</div>
+							<div class="modal-body">
+								<p>
+									{$post['text']}
+								</p>
+							</div>
+							<div class="modal-footer">
+								 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								 <a href="/index.php/Index/post/pid/{$post['pid']}" class="btn btn-primary">详情</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</volist>
+		<div class="row" style="margin-top:20px;margin-bottom:20px">
+			<p class="text-center">
+				{$page}
+			</p>
+			<p>
+				Powered by <a href="http://git.oschina.net/supercell/mybloger">Mybloger</a>
+			</p>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<include file="Index/side" />
+	</div>
+</div>

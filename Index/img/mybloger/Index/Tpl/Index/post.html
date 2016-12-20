@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col-md-9">
+		<div class="row" style="background-color:#FFFFFF;border-radius:5px;padding:10px;margin-top:20px;">
+				<a href="/index.php/Index">Home</a>/<a href="">{$post['title']}</a></li>
+		</div>
+		<div class="row" style="background-color:#FFFFFF;border-radius:10px;padding:10px;margin-top:20px;">
+			<p><h4><b ><a href="" class="text-muted">{$post['title']}</a></b></h4></p>
+			<p><small>作者 {$post['uid']|uidname} 发布于 {$post['time']|date="Y-m-d H:i",###} / <span class="glyphicon glyphicon-eye-open"></span> {$post['view']} / <span class="glyphicon glyphicon-comment"></span> {$post['re']} / 标签 {$post['tid']|tags}</small></p>
+			<p>
+				{$post['text']}
+			</p>
+		</div>
+		<div class="row" style="background-color:#FFFFFF;border-radius:10px;padding:10px;margin-top:20px;">
+			<volist name="repost" id="re">
+				<div class="row">
+					<div class="col-md-1 col-sm-12">
+						<img width="50px" src="<?php echo avatar($re) ?>">
+					</div>
+					<div class="col-md-11 col-sm-12" style="margin-top:-22px">
+						<span class="row">
+							#{$re['lc']}楼 <small class="text-warning">{$re['uid']|uidname} 发布于 {$re['time']|date="Y-m-d H:i",###}</small>
+						</span>
+						<span class="row">
+							<p>{$re['text']}</p>
+
+						</span>
+
+					</div>
+
+				</div>
+				<hr>
+			</volist>
+			<p class="text-center">{$page}</p>
+		</div>
+		<div class="row" style="background-color:#FFFFFF;border-radius:10px;padding:10px;margin-top:20px;">
+			<form action="/index.php/Index/repost" method="post">
+				<input type="text" name="pid" value="{$post['pid']}" class="hidden">
+				<if condition="!$_SESSION['uid']" >
+					<div class="row">
+						<span class="col-md-5">
+							<div class="input-group">
+								<span class="input-group-addon">邮箱</span>
+								<input type="email" name="email" class="form-control" id="email">
+							</div>
+						</span>
+					</div>
+				</if>
+				<span class="row"><textarea class="form-control" name="text"></textarea></span>
+				<span class="row"><p class="text-right" ><button class="btn btn-default">回复</button></p></span>
+			</form>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<include file="Index/side" />
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<div class="row" style="background-color:#FFFFFF;border-radius:7px;padding:10px;margin-top:20px;margin-left:10px;">
+	<form method="get" action="/index.php/Index/search">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="输入查询" name="search" >
+			<span class="input-group-btn">
+				<button class="btn btn-info">搜索</button>
+			</span>
+		</div>
+	</form>
+</div>
+<div class="row" style="background-color:#FFFFFF;border-radius:7px;padding:10px;margin-top:20px;margin-left:10px;">
+<p><h4 class="text-center">热门标签</h4></p>
+	<?php  echo hottag() ?>
+</div>
+<div class="row" style="background-color:#FFFFFF;border-radius:7px;padding:10px;margin-top:20px;margin-left:10px;">
+<p ><h4 class="text-center">最近的文章</h4></p>
+	<?php  echo lastpost() ?>
+</div>
+<div class="row" style="background-color:#FFFFFF;border-radius:7px;padding:10px;padding-left:0px;margin-top:20px;margin-left:10px;">
+	<span class="text-center"><h4>文章归档</h4></span>
+<?php  shelves()  ?>
+</div>
+<div class="row" style="background-color:#FFFFFF;border-radius:7px;padding:20px;margin-top:20px;margin-left:10px;">
+	{$site['footer']}
+</div>
+<script type="text/javascript">
+	$(".slide_click").click(function(){
+		var value=$(this).attr("value");
+		var jugg=$("#li"+value).css("display");
+		if(jugg=="none"){
+			$("#li"+value).css("display","inline");
+		}else{
+			$("#li"+value).css("display","none");
+		}	
+	})
+	$(".slide_click_moon").click(function(){
+		var value=$(this).attr("value");
+		var jugg=$("#moon"+value).css("display");
+		if(jugg=="none"){
+			$("#moon"+value).css("display","inline");
+		}else{
+			$("#moon"+value).css("display","none");
+		}	
+	})
+</script>

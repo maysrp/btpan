@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="row text-right"><h4>管理文章</h4></div>
+	<div class="row" style="background-color:#FFFFFF">
+		<table class="table">
+			<th>
+				<td></td>
+				<td>标题</td>
+				<td>作者</td>
+				<td>标签</td>
+				<td>日期</td>
+			</th>
+			<volist name="list" id="post">
+				<tr>
+					<td>{$post['re']}</td>
+					<td>{$post['title']}</td>
+					<td>{$post['uid']}</td>
+					<td></td>
+					<td>{$post['time']|date="Y-m-d",###}</td>
+				</tr>
+			</volist>
+		</table>
+	</div>
+
+
+</div>

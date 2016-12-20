@@ -16,7 +16,11 @@ class IndexAction extends Action {
     				move_uploaded_file($_FILES['torrent']['tmp_name'], $torrent);
     				$ar=$this->torrent($torrent);
     				$tid=D('Torrent')->torrent($ar,$torrent);
-					$this->redirect('/Index/tid/tid/'.$tid);
+                    if($_SESSION['uid']){
+                        $this->redirect('/Index/ctid/tid/'.$tid);
+                    }else{
+                        $this->redirect('/Index/tid/tid/'.$tid);
+                    }
     			}else{
     				$this->error("非种子文件");
     			}
@@ -33,6 +37,8 @@ class IndexAction extends Action {
     	if($info){
     		$where['tid']=$tid;
     		$file=D('File')->where($where)->select();
+            $commont=D('Commont')->where($where)->select();
+            $this->assign("commont",$commont);
     		$this->assign("info",$info);
     		$this->assign("file",$file);
     		$this->display();
@@ -40,6 +46,38 @@ class IndexAction extends Action {
     		$this->error("无文件");
     	}
 
+    }
+    function ctid(){
+        $tid=intval($_GET['tid']);
+        $info=D('Torrent')->find($tid);
+        if($_SESSION['uid']!=$info['uid']){
+            $this->error("未发现文件！");
+        }
+        if($_POST['ms']){
+            D('Torrent')->ms($_POST);
+            $this->redirect('/Index/ctid/tid/'.$tid);
+        }else{
+            if($info){
+                $where['tid']=$tid;
+                $file=D('File')->where($where)->select();
+                $this->assign("info",$info);
+                $this->assign("file",$file);
+                $this->display();
+            }else{
+                $this->error("无文件");
+            }
+
+        }
+    }
+    function commont(){
+        if ($_POST['tid']) {
+            $re=D('Commont')->replay($_POST);
+            if ($re['status']) {
+                header("Location:".$_SERVER['HTTP_REFERER']);
+            }else{
+                $this->error($re['z']);
+            }
+        }
     }
     function torrent($torrent){
     	include_once "lightbenc.php";

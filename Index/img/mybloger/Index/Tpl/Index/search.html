@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-9">
+		<div class="row" style="background-color:#FFFFFF;border-radius:5px;padding:10px;margin-top:20px;">
+				<a href="/index.php/Index">Home</a>/<a href="">搜索:{$_GET['search']}</a></li>
+		</div>
+		<volist name="list" id="post">
+			<div class="row" style="background-color:#FFFFFF;border-radius:10px;padding:10px;margin-top:20px;">
+				<p><h4><b ><a href="/index.php/Index/post/pid/{$post['pid']}" class="text-muted">{$post['title']}</a></b></h4></p>
+				<p><small>作者 {$post['uid']|uidname} 发布于 {$post['time']|date="Y-m-d H:i",###} / <span class="glyphicon glyphicon-eye-open"></span> {$post['view']} / <span class="glyphicon glyphicon-comment"></span> {$post['re']} / 标签 {$post['tid']|tags}</small></p>
+			</div>
+		</volist>
+	</div>
+	<div class="col-md-3">
+		<include file="Index/side" />
+	</div>
+</div>

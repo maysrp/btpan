@@ -3,11 +3,21 @@
 </div>
 <div class="row" >
 	<span class="row">
-		<h3>{$info['name']}</h3>
+		<span class="col-md-9">
+			<h3>{$info['title']}</h3>
+			<h5>链接:<a href="/index.php/Index/tid/tid/{$info['tid']}">http://{$_SERVER['HTTP_HOST']}/index.php/Index/tid/tid/{$info['tid']}</a></h5>
+			<button type="button" class="btn btn-info" data-toggle="modal" data-target=".btinfo">简介</button>
+		</span>
+		<span class="col-md-3">
+			<img src="/qrcode.php?url=http://{$_SERVER['HTTP_HOST']}/index.php/Index/tid/tid/{$info['tid']}">
+		</span>
 	</span>
 	<hr>
 	<div class="row">
 		<div class="col-md-6">
+			<span class="row">
+				<h4>文件名:{$info['name']}</h4>
+			</span>
 			<span class="row">
 				创建者:{$info['createby']}
 			</span>
@@ -38,5 +48,64 @@
 			</volist>
 		</div>	
 	</div>
+<hr>
+	<div class="row">
+		<div class="row" id="info">
+			<span id="more" class="col-md-2 col-md-offset-5 btn btn-default" >>>>>更多<<<<</span>
+		</div>
+		<div class="row hide" id="btms">
+			<div class="col-md-9 col-md-offset-2">{$info['ms']}</div>
+			<hr>
+			<div class="row">
+
+				<volist name="commont" id="vo">
+					<blockquote class="col-md-8 col-md-offset-4"  style="background-color: #F2F2F2;border-radius: 5px;">
+						<p>#{$i} {$vo['text']}</p>
+						<p class="text-right">---{$vo['time']|date="Y-m-d H:i",###}</p>
+					</blockquote>
+
+				</volist>
+			</div>
+
+			<if condition="$_SESSION">
+				<form action="/index.php/Index/commont" method="post">
+					<input type="text" name="tid" value="{$info['tid']}" class="hide">
+					<div class="col-md-4 col-md-offset-8">
+					<div class="input-group">
+						<input type="text" name="text" class="form-control">
+						<div class="input-group-btn">
+							<input type="submit" name="" class="btn btn-default" value="回复">
+						</div>
+					</div>
+					</div>
+				</form>
+			</if>
+		</div>
+	</div>
 	
 </div>
+
+<div class="modal fade btinfo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-header">
+    		<div class="modal-title">
+    			<h3>{$info['title']}</h3>
+    		</div>
+    	</div>
+    	<div class="modal-body">
+    		{$info['ms']}
+    	</div>
+    	<div class="modal-footer">
+    		 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+    	</div>
+      
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$("#more").click(function(){
+		$("#info").html("");
+		$("#btms").removeClass("hide");
+	});
+</script>

@@ -14,4 +14,10 @@
 	}
 	function tr($string,$start=1){
 		return substr($string, $start);
+	}
+	function uid_name($uid){
+		$info=D('User')->find($uid);
+		return $info['name'];
 	}		
+
+

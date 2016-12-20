@@ -1,0 +1,31 @@
+
+<div class="row"   style="margin:10px">
+	<div class="row"  style="background-color:#FFFFFF;padding:20px;border-radius:8px;margin-bottom:10px;">
+		<a href="/index.php/Index">Home</a>/<a href="">标签:{$tag}</a></li>
+	</div>
+
+	<div class="row" style="background-color:#FFFFFF;padding:20px;border-radius:8px;">
+		<table class="table">
+			<tr>
+				<th></th>
+				<th >标题</th>
+				<th >作者</th>
+				<th >标签</th>
+				<th >日期</th>
+				
+			</tr>
+			<volist name="list" id="post">
+				<tr>
+					<td><span class="badge">{$post['re']}</span></td>
+					<td ><a href="/index.php/Index/post/pid/{$post['pid']}">{$post['title']}</a> </td>
+					<td >{$post['uid']|uidname}</td>
+					<td >{$post['tid']|tagss}</td>
+					<td >{$post['time']|date="Y-m-d",###} </td>
+				</tr>
+			</volist>
+		</table>
+	</div>
+	<div class="row text-right" style="padding-top:20px">
+		<span>{$page}</span>
+	</div>
+</div>

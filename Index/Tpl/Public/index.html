@@ -9,6 +9,9 @@
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<title>BT转换</title>
 	<style type="text/css">
+		img{
+			max-width:66%;
+		}
 		body{
 			
 			background-color: #FCFAFA;
@@ -19,10 +22,18 @@
 </head>
 <body>
 	<div class="container">
+		<div class="row"><div class="text-right" style="margin:10px;">
+			<if condition="$_SESSION['uid']">
+				<span  class="text-success">用户:<b>{$_SESSION['uid']|uid_name}</b></span>
+			<else/>
+				<a href="/index.php/User/login" class="btn btn-link text-success"><b>登入</b></a>
+			</if>
+		</div></div>
 		{__CONTENT__}
 	</div>
 	<div class="container">
 		<span class="col-md-3 col-md-offset-2">Powered by<a href="https://github.com/maysrp/btpan">Btpan</a></span>
 	</div>
+
 </body>
 </html>

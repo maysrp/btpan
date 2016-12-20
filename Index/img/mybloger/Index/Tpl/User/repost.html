@@ -1,0 +1,59 @@
+<div class="row">
+	<include file="User/nav" />
+</div>
+<div class="row">
+	<div class="row" style="margin:10px">
+		<span class="col-md-2"><h3>评论管理 <small></small></h3></span>
+	</div>
+	<div class="row" style="background-color:#FFFFFF;padding:20px;border-radius:8px;">
+		<table class="table">
+			<tr>
+				<th>回复id</th>
+				<th>文章</th>
+				<th>作者</th>
+				<th>楼层</th>
+				<th>内容</th>
+				<th>ip</th>
+				<th>时间</th>
+			</tr>
+			<volist name="list" id="repost">
+				<tr>
+					<td>#{$repost['rid']}</td>
+					<td>{$repost['pid']|pidtitle}</td>
+					<td>{$repost['uid']|uidname}</td>
+					<td>{$repost['lc']}</td>
+					<td>
+						<button class="btn btn-default" data-toggle="modal" data-target="#repost_{$repost['rid']}">>>>查看<<<</button>
+					</td>
+					<td>{$repost['ip']}</td>
+					<td>{$repost['time']|date="Y-m-d H:i",###} <a href="/index.php/User/delrepost/rid/{$repost['rid']}"><span class="glyphicon glyphicon-trash"></span></a></td>
+				</tr>
+				<div class="modal fade" id="repost_{$repost['rid']}">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title"><small class="text-warning">文章:</small>{$repost['pid']|pidtitle}</h4>
+							</div>
+							<div class="modal-body">
+								<p>
+									<small class="text-muted">{$repost['uid']|uidname} 发布于 {$repost['time']|date="Y-m-d H:i",###} 第{$repost['lc']}楼</small>
+								</p>
+								<p>
+									{$repost['text']}
+								</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<a href="/index.php/User/delrepost/rid/{$repost['rid']}" class="btn btn-danger">删除</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</volist>
+		</table>
+	</div>
+	<div class="row text-right" style="padding-top:20px">
+		<span>{$page}</span>
+	</div>
+</div>

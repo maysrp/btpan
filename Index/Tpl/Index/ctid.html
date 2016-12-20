@@ -1,0 +1,93 @@
+<script type="text/javascript" src="/plugins/ue/ueditor.config.js"></script>  
+<script type="text/javascript" src="/plugins/ue/ueditor.all.js"></script> 
+<div class="row" style="margin-top:100px">
+	<h2 class="text-center"><a href="/">BT转换</a></h2>
+</div>
+<div class="row" >
+	<span class="row">
+		<h3>{$info['title']}</h3>
+		<h5>链接:<a href="/index.php/Index/tid/tid/{$info['tid']}">http://{$_SERVER['HTTP_HOST']}/index.php/Index/tid/tid/{$info['tid']}</a></h5>
+	</span>
+	<hr>
+	<div class="row">
+		<div class="col-md-6">
+			<span class="row">
+				<h4>文件名:{$info['name']}</h4>
+			</span>
+			<span class="row">
+				创建者:{$info['createby']}
+			</span>
+			<span class="row">
+				描述:{$info['comment']}
+			</span>
+			<span class="row">
+				大小:{$info['size']|thesize}
+			</span>
+			<span class="row">
+				做种时间:{$info['time']}
+			</span>
+			<span class="row">
+				文件个数:{$info['filecount']} | 编码:{$info['encoding']}
+			</span>
+			<span class="row">
+				<span class="glyphicon glyphicon-magnet"></span>:
+				{$info['magnet']}
+			</span>
+			<span class="row">
+				<a href="{$info['torrent']|tr}" class="btn btn-primary btn-sm">下载种子</a>
+			</span>
+		</div>
+		<div class="col-md-6" style="background-color: #F1F1F1;overflow-y:scroll;height: 300px;border-radius: 5px;border:2px solid">
+			<volist name="file" id="vo">
+				<span><span class="{$vo['type']}"></span> {$vo['filename']}</span><span class="text-muted"> {$vo['size']|thesize}</span><br>
+
+			</volist>
+		</div>
+		<hr>	
+	</div>
+	<div class="row">
+		<form class="form" action="" method="post">
+			<input type="text" name="tid" class="hide" value="{$info['tid']}">
+		<div class="row" style="margin-bottom: 10px; ">
+			<input type="text" name="title" class="form-control" placeholder="标题" value="{$info['title']}">
+		</div>
+		<div class="row">
+			<textarea id="post_text" name="ms" style="height: 300px;">{$info['ms']}</textarea>
+		</div>
+		<div class="row">
+			<span class="col-md-1 col-md-offset-11"><input type="submit" name="submit" value="提交" class="btn btn-primary" style="margin: 10px"></span>
+		</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	UE.getEditor('post_text' ,{
+    	toolbars: [
+    		[
+    			'source', //源代码
+                'blockquote', //引用
+                'insertcode', //代码语言
+                'undo', //撤销
+                'redo', //重做
+                'bold', //加粗
+                'italic', //斜体
+                'underline', //下划线
+                'strikethrough', //删除线
+                'fontfamily', //字体
+                'forecolor', //字体颜色
+                'fontsize', //字号
+                'link', //超链接
+                'unlink', //取消链接
+                'emotion', //表情
+                'backcolor', //背景色
+                'insertimage', //多图上传
+                'attachment', //附件
+                'removeformat', //清除格式
+                'horizontal', //分隔线
+                'inserttable', //插入表格
+                'fullscreen', //全屏
+    		]
+		]
+    }
+		)
+</script>

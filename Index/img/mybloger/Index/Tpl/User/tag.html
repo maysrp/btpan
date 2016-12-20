@@ -1,0 +1,33 @@
+<div class="row">
+	<include file="User/nav" />
+</div>
+<div class="row">
+	<div class="row" style="margin:10px">
+		<span class="col-md-2"><h3><a href="/index.php/User/lpost">管理文章</a> <small><span class="bg-info" style="padding:3px"><a href="/index.php/User/add" >新增</a></span></small></h3></span>
+		<span class="col-md-3 col-md-offset-7 text-right"><h3>标签: <b><span class="text-warning">{$tag}</span></b></h3></span>
+	</div>
+	<div class="row" style="background-color:#FFFFFF;padding:20px;border-radius:8px;">
+		<table class="table">
+			<tr>
+				<th></th>
+				<th >标题</th>
+				<th >作者</th>
+				<th >标签</th>
+				<th >日期</th>
+				
+			</tr>
+			<volist name="list" id="post">
+				<tr>
+					<td><span class="badge">{$post['re']}</span></td>
+					<td ><a href="/index.php/User/edit/pid/{$post['pid']}">{$post['title']}</a> <small><a href="" class="text-warning"><span class="glyphicon glyphicon-new-window"></span></a></small></td>
+					<td >{$post['uid']|uidname}</td>
+					<td >{$post['tid']|tagss}</td>
+					<td >{$post['time']|date="Y-m-d",###} <a href="/index.php/User/delete/pid/{$post['pid']}" class="text-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+			</volist>
+		</table>
+	</div>
+	<div class="row text-right" style="padding-top:20px">
+		<span>{$page}</span>
+	</div>
+</div>

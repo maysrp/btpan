@@ -1,0 +1,160 @@
+<div class="row">
+	<include file="User/nav" />
+</div>
+<div class="col-md-3">
+	<div class="row">
+		<div class="row" style="padding:20px;background-color:#FFFFFF;border-radius:5px;margin:20px;">
+			<p class="text-center"><img src="{$_SESSION|avatar}" width="120px" class="img-circle" id="user_image" data-toggle="tooltip" data-placement="left" title="点击更换头像"></p>
+			<p ><h3 class="text-center">{$user|uidname}</h3></p>
+      <div class="hidden">
+        <input type="file" name="image" id="up_image">
+      </div>
+			<p class="text-center"><button  class="btn btn-warning" data-toggle="modal" data-target="#change">修改密码</button></p>
+		</div>
+		<div class="row" style="padding:20px;background-color:#FFFFFF;border-radius:5px;margin:20px;">
+			<form method="post" action="/index.php/User/site">
+				<p>名称:</p>
+					<input type="text" name="name" class="form-control" value="{$site['name']}">
+				<br>
+				<p>logo:</p>
+					<input type="text" name="logo" class="form-control" value="{$site['logo']}">
+				<br>
+				<p>背景图片:</p>
+					<input type="text" name="image" class="form-control" value="{$site['image']}">
+				<br>
+				<p>背景滚动:</p>
+				<div class="btn-group" data-toggle="buttons" style="margin-bottom:10px;">
+  					<label class="btn btn-info btn-sm {$site['background-attachment']|active="scroll",###}">
+    					<input type="radio" name="background-attachment" value="scroll" {$site['background-attachment']|radio="scroll",###}>是
+  					</label>
+  					<label class="btn btn-info btn-sm {$site['background-attachment']|active="fixed",###}">
+    					<input type="radio" name="background-attachment" value="fixed" {$site['background-attachment']|radio="fixed",###}>否
+  					</label>
+  				</div>
+  				<br>
+
+  				<p>背景重复:</p>
+				<div class="btn-group" data-toggle="buttons" style="margin-bottom:10px;">
+  					<label class="btn btn-info btn-sm {$site['background-repeat']|active="repeat",###}">
+    					<input type="radio" name="background-repeat" value="repeat" {$site['background-repeat']|radio="repeat",###}>XY轴
+  					</label>
+  					<label class="btn btn-info btn-sm {$site['background-repeat']|active="repeat-x",###}">
+    					<input type="radio" name="background-repeat" value="repeat-x" {$site['background-repeat']|radio="repeat-x",###}>X轴
+  					</label>
+  					<label class="btn btn-info btn-sm {$site['background-repeat']|active="repeat-y",###}">
+    					<input type="radio" name="background-repeat" value="repeat-y" {$site['background-repeat']|radio="repeat-y",###}>Y轴
+  					</label>
+  					<label class="btn btn-info btn-sm {$site['background-repeat']|active="no-repeat",###}">
+    					<input type="radio" name="background-repeat" value="no-repeat" {$site['background-repeat']|radio="no-repeat",###}>不重复
+  					</label>
+  				</div>
+  				<br>
+				<p>每页显示文章:</p>
+					<input type="text" name="page" class="form-control" value="{$site['page']}">
+				<br>
+				<p>匿名评论:</p>
+				<div class="btn-group" data-toggle="buttons">
+  					<label class="btn btn-info btn-sm {$site['niming']|active=1,###}">
+    					<input type="radio" name="niming" value="1" {$site['niming']|radio=1,###}> 是
+  					</label>
+  					<label class="btn btn-info btn-sm {$site['niming']|active=0,###}">
+    					<input type="radio" name="niming" value="0" {$site['niming']|radio=0,###}>否
+  					</label>
+  				</div>
+  				<p style="margin:10px" class="text-right">
+  					<button class="btn btn-primary">提交</button>
+  				</p>
+			</form>
+		</div>
+		<div class="row" style="padding:20px;background-color:#FFFFFF;border-radius:5px;margin:20px;">
+			<p class="text-right"><a href="/index.php/User/logout" class="btn btn-danger">离开</a></p>
+		</div>
+	</div>
+
+</div>
+<div class="col-md-9">
+	<form action="/index.php/User/footer_javascript" method="post">
+  <div class="row">
+    <h4><b>关键词</b></h4>
+      <textarea class="form-control" style="height:50px" name="keywords">
+        {$site['keywords']}
+      </textarea>
+  </div>
+  <div class="row">
+    <h4><b>描述</b></h4>
+      <textarea class="form-control"  name="description">
+        {$site['description']}
+      </textarea>
+  </div>
+	<div class="row">
+		<h4>Footer</h4>
+			<textarea class="form-control" style="height:200px" name="footer">
+				{$site['footer']}
+			</textarea>
+	</div>
+	<div class="row">
+		<h4>Javascript</h4>
+			<textarea class="form-control" style="height:200px" name="javascript">
+				{$site['javascript']}
+			</textarea>
+			<div class="text-right" style="padding:10px">
+				<button class="btn btn-info">修改</button>		
+			</div>
+	</div>
+	</form>
+
+</div>
+
+
+
+
+<div class="modal fade bs-example-modal-sm" id="change">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	<div class="modal-header">
+    		<h4 class="modal-title">修改密码</h4>
+    	</div>
+    	<div class="modal-body">
+    		<form action="/index.php/User/change" method="post">
+          原密码:
+          <input type="password" name="primary" class="form-control">
+    			新密码:
+    			<input type="password" name="old" class="form-control">
+    			请重复：
+    			<input type="password" name="new" class="form-control">
+    	</div>
+    	<div class="modal-footer">
+    			<button class="btn btn-danger">修改</button>
+    		</form>
+    	</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#user_image").click(
+    function(){
+      $("#up_image").click();
+    }
+  )
+  $("#up_image").change(function(){
+    file=this.files['0'];
+    var fd=new FormData();
+    fd.append("image",file);
+    $.ajax({
+      url:"/index.php/User/image",
+      type:"POST",
+      data:fd,
+      processData:false,
+      contentType:false,
+      success:function(data){
+        if(data.re=="success"){
+           history.go(0);
+        }
+      
+       
+      }
+    })
+
+  })
+</script>
