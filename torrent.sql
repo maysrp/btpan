@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-12-19 21:20:41
+-- Generation Time: 2016-12-20 20:16:16
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -23,6 +23,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `tr_commont`
+--
+
+CREATE TABLE IF NOT EXISTS `tr_commont` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `tid` int(11) NOT NULL,
+  `text` varchar(254) CHARACTER SET utf8 NOT NULL,
+  `time` int(11) NOT NULL,
+  `ip` varchar(128) NOT NULL,
+  `uid` int(11) NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `tr_file`
 --
 
@@ -34,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `tr_file` (
   `tid` int(11) NOT NULL,
   `hash` varchar(128) NOT NULL,
   PRIMARY KEY (`fid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1422 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -52,14 +68,41 @@ CREATE TABLE IF NOT EXISTS `tr_torrent` (
   `file` longtext CHARACTER SET utf8 NOT NULL,
   `size` int(11) NOT NULL,
   `createby` varchar(128) CHARACTER SET utf8 NOT NULL,
+  `ms` longtext CHARACTER SET utf8 NOT NULL,
   `comment` text CHARACTER SET utf8 NOT NULL,
   `time` varchar(64) NOT NULL,
   `filecount` int(11) NOT NULL,
   `tag` text CHARACTER SET utf8 NOT NULL,
   `commont` int(11) NOT NULL,
   `torrent` varchar(254) NOT NULL,
+  `up_ip` varchar(128) NOT NULL,
+  `up_time` int(11) NOT NULL,
+  `title` varchar(254) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`tid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tr_user`
+--
+
+CREATE TABLE IF NOT EXISTS `tr_user` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) CHARACTER SET utf8 NOT NULL,
+  `pass` varchar(128) NOT NULL,
+  `salt` int(11) NOT NULL,
+  `image` varchar(128) NOT NULL,
+  `cookie` varchar(128) NOT NULL,
+  `join_ip` varchar(128) NOT NULL,
+  `join_time` int(11) NOT NULL,
+  `login_info` longtext NOT NULL,
+  `torrent` int(11) NOT NULL,
+  `my` text CHARACTER SET utf8 NOT NULL,
+  `point` int(11) NOT NULL,
+  `fans` text NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
