@@ -1,19 +1,19 @@
 <?php
 	class FileModel extends Model{
-		function file($info,$tid,$hash){
+		function file($info,$tid,$hash,$encoding){
 			$add['hash']=$hash;
 			$add['tid']=$tid;
 			foreach ($info as $key => $value) {
 				if(is_array($value['path'])){
 					if(count($value['path'])==2){
-						$add['filename']=$value['path'][1];
+						$add['filename']=$this->encoding($value['path'][1],$encoding);
 						$add['type']=$this->type($add['filename']);
 					}else{
-						$add['filename']=$value['path']['0'];
+						$add['filename']=$this->encoding($value['path']['0'],$encoding);
 						$add['type']=$this->type($add['filename']);
 					}
 				}else{
-					$add['filename']=$value['path'];
+					$add['filename']=$this->encoding($value['path'],$encoding);
 					$add['type']=$this->type($add['filename']);
 				}
 				$add['size']=$value['length'];
@@ -80,4 +80,11 @@
 			}
 
 		}
+		function encoding($str,$encoding){
+        	if (strtolower($encoding)=="utf-8") {
+            	return $str;
+        	}else{
+            	return iconv($encoding, "utf-8", $str);
+        	}
+   		}
 	}
