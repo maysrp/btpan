@@ -103,9 +103,11 @@
     </div>
   </div>
 </div>
+<span id="btname">{$info['name']}</span>
 <script type="text/javascript">
 	$("#more").click(function(){
 		$("#info").html("");
 		$("#btms").removeClass("hide");
 	});
+	$("title").html($("#btname").html());
 </script>
