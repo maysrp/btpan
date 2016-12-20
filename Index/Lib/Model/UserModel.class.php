@@ -62,6 +62,7 @@
 			$add['pass']=md5(md5($info['pass']).$add['salt']);
 			$add['cookie']=$this->cookie_create($add['pass']);
 			$uid=$this->add($add);
+			$this->session($uid);
 			$re['status']=true;
 			$re['z']=$uid;
 			return $re;
