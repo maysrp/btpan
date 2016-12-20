@@ -32,7 +32,7 @@
 		}
 		function ms($ms){
 			$save['tid']=$ms['tid'];
-			$info=$this->find($tid);
+			$info=$this->find($save['tid']);
 			if ($info['uid']==$_SESSION['uid']) {
 				$save['ms']=$ms['ms'];
 				$save['title']=$ms['title'];
