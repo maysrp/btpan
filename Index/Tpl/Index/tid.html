@@ -60,7 +60,7 @@
 
 				<volist name="commont" id="vo">
 					<blockquote class="col-md-8 col-md-offset-4"  style="background-color: #F2F2F2;border-radius: 5px;">
-						<p>#{$i} {$vo['text']}</p>
+						<p>#{$i} {$vo['uid']|uid_name}: {$vo['text']}</p>
 						<p class="text-right">---{$vo['time']|date="Y-m-d H:i",###}</p>
 					</blockquote>
 
