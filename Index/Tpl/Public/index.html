@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="row"><div class="text-right" style="margin:10px;">
 			<if condition="$_SESSION['uid']">
-				<span  class="text-success">用户:<b>{$_SESSION['uid']|uid_name}</b></span>
+				<span  class="text-success">用户:<b><a href="/index.php/User">{$_SESSION['uid']|uid_name}</a></b></span>
 			<else/>
 				<a href="/index.php/User/login" class="btn btn-link text-success"><b>登入</b></a>
 			</if>

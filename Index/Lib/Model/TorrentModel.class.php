@@ -17,6 +17,10 @@
 				$add['createby']=$info['created by'];
 				$add['comment']=$info['comment']?$info['comment']:$add['name'];
 				$tid=$this->add($add);
+				if ($_SESSION['uid']) {
+					D('User')->where($_SESSION)->setInc("torrent");
+					D('User')->where($_SESSION)->setInc("point",10);
+				}
 				D('File')->file($info['info']['files'],$tid,$add['hash'],$add['encoding']);
 				return $tid;
 			}else{

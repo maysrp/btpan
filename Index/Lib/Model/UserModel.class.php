@@ -43,7 +43,7 @@
 		function session($uid){
 			$_SESSION['uid']=$uid;
 		}
-		function destroy_session(){
+		function session_destroy(){
 			session_destroy();
 		}
 		function join($info){
@@ -83,6 +83,7 @@
 			}
 		}
 		function cookie_destroy(){
+			setcookie("auth","",time()-3600);
 			$this->session_destroy();
 		}
 		function logout(){
