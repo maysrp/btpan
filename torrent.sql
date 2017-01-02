@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-12-20 20:16:16
+-- Generation Time: 2017-01-02 15:58:51
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `torrent`
+-- Database: `test`
 --
 
 -- --------------------------------------------------------
@@ -45,12 +45,30 @@ CREATE TABLE IF NOT EXISTS `tr_commont` (
 CREATE TABLE IF NOT EXISTS `tr_file` (
   `fid` int(11) NOT NULL AUTO_INCREMENT,
   `filename` text CHARACTER SET utf8 NOT NULL,
-  `size` int(11) NOT NULL,
+  `size` bigint(11) NOT NULL,
   `type` varchar(64) NOT NULL,
   `tid` int(11) NOT NULL,
   `hash` varchar(128) NOT NULL,
   PRIMARY KEY (`fid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tr_ondo`
+--
+
+CREATE TABLE IF NOT EXISTS `tr_ondo` (
+  `oid` int(11) NOT NULL AUTO_INCREMENT,
+  `tid` int(11) NOT NULL,
+  `gid` varchar(64) NOT NULL,
+  `hash` varchar(64) NOT NULL,
+  `status` varchar(16) NOT NULL,
+  `dir` varchar(200) NOT NULL,
+  `complete` bigint(11) NOT NULL,
+  `total` bigint(11) NOT NULL,
+  PRIMARY KEY (`oid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -66,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `tr_torrent` (
   `encoding` varchar(32) NOT NULL,
   `name` text CHARACTER SET utf8 NOT NULL,
   `file` longtext CHARACTER SET utf8 NOT NULL,
-  `size` int(11) NOT NULL,
+  `size` bigint(11) NOT NULL,
   `createby` varchar(128) CHARACTER SET utf8 NOT NULL,
   `ms` longtext CHARACTER SET utf8 NOT NULL,
   `comment` text CHARACTER SET utf8 NOT NULL,
@@ -101,6 +119,11 @@ CREATE TABLE IF NOT EXISTS `tr_user` (
   `my` text CHARACTER SET utf8 NOT NULL,
   `point` int(11) NOT NULL,
   `fans` text NOT NULL,
+  `num` int(11) NOT NULL COMMENT '设定下载总数',
+  `size` int(11) NOT NULL COMMENT '设定总容量',
+  `now_size` int(11) NOT NULL COMMENT '已经使用容量',
+  `now_num` int(11) NOT NULL COMMENT '已经使用个数',
+  `num_all` text NOT NULL COMMENT 'json 下载的Oid',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

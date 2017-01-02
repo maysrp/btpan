@@ -3,7 +3,7 @@
 		function torrent($info,$torrent){
 			$add['hash']=$info['info_hash'];
 			if(!$id=$this->jugg($add['hash'])){
-				$add['uid']=$_SESSION['uid']?$_SESSION['uid']:"66666666666";
+				$add['uid']=$_SESSION['uid']?$_SESSION['uid']:"66666666";
 				$add['encoding']=$info['encoding']?$info['encoding']:"utf-8";
 				$add['magnet']="magnet:?xt=urn:btih:".$add['hash'];
 				$add['name']=$this->encoding($info['info']['name'],$add['encoding']);
@@ -14,7 +14,7 @@
 				$add['file']=json_encode($info['info']['files']);
 				$add['torrent']=$torrent;
 				$add['time']=date("Y-m-d H:i",$info['creation date']);
-				$add['createby']=$info['created by'];
+				$add['createby']=$info['created by']?$info['created by']:"by Web";
 				$add['comment']=$info['comment']?$info['comment']:$add['name'];
 				$tid=$this->add($add);
 				if ($_SESSION['uid']) {
